@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+  <main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+      <!-- for topics [ SO THAT THE 'TOPICS' SIDEBAR IS ALWAYS AVAILABLE FOR USER TO CLICK (nothing to do with user's topic or something) ]-->
+      {% include 'topics_component.html' %}
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+      <div class="roomList">
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <img src="https://randomuser.me/api/portraits/men/11.jpg" />
+            </div>
+          </div>
+          <div class="profile__info">
+            <h3>{{user.username}}</h3>
+            <p>@{{user.username}}</p>
+
+            <!-- render this profile edit button only if the account is of the logged-in user -->
+            {% if request.user == user %}
+              <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
+            {% endif %}
+          </div>
+<!--          <div class="profile__about">-->
+<!--            <h3>About</h3>-->
+<!--            <p>-->
+<!--              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur illo tenetur-->
+<!--              facilis sunt nemo debitis quisquam hic atque aut? Ducimus alias placeat optio-->
+<!--              accusamus repudiandae quis ab ex exercitationem rem?-->
+<!--            </p>-->
+<!--          </div>-->
+        </div>
+
+        <div class="roomList__header">
+          <div>
+            <h2>Recipes by {{user.username}}</h2>
+          </div>
+        </div>
+
+        <!-- div for feed (recipes the user has uploaded)-->
+        {% include 'feed_component.html' %}
+
+      </div>
+      <!-- Room List End -->
+
+
+
+      <!-- Activities Start -->
+      <div>
+
+      </div>
+      <!-- Activities End -->
+    </div>
+  </main>
+{% endblock content %}

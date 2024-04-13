@@ -1,0 +1,47 @@
+<!--for looking sinside a recipe-->
+
+<!-- WE EXTEND FROM THE TEMPLATE FILE-->
+{% extends 'main.html' %}
+
+
+{% block content %}
+    <div class="recipe-container">
+        <div>
+
+
+            <h2>{{recipe.name}}</h2>
+
+            <p>{{recipe.description}}</p>
+
+            <!-- for viewing all comments inside the recipe-->
+            <div class="comment-wrapper">
+                <h3>Conversation</h3>
+                <hr>
+
+                {% for message in recipe_messages %}
+                    <div>
+                        <!-- only owner of comment (message) can see the delete button-->
+                        {% if request.user == message.user %}
+                            <a href="{% url 'delete-message' message.id%}">Delete</a>
+                        {% endif %}
+
+                        <small>@{{message.user}}  {{message.created | timesince}} ago</small>
+                        <p>{{message.body}}</p>
+                        <hr>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- for adding a comment -->
+            {% if request.user.is_authenticated %}
+                <div>
+                    <!-- this form sends request to 'recipe' in 'views', so views will add it-->
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <input type="text" name="body" placeholder="Write your message here...">
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

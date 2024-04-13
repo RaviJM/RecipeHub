@@ -1,0 +1,28 @@
+<!-- WE EXTEND FROM THE TEMPLATE FILE-->
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+    }
+</style>
+
+
+<div class="home-container">
+
+    <div>
+        {% include 'topics_component.html' %}
+    </div>
+
+    <div>
+        <h5>{{recipe_count}} recipes available</h5>
+        <a href="{% url 'create-recipe' %}">Create Recipe</a>
+        {% include 'feed_component.html' %}
+    </div>
+
+
+</div>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <style>
+        .profile-container{
+            display: grid;
+            grid-template-columns: 1fr 5fr;
+        }
+    </style>
+
+    <h1>{{user.username}}</h1>
+
+    <div class="profile-container">
+        <!-- div for topics [ SO THAT THE 'TOPICS' SIDEBAR IS ALWAYS AVAILABLE FOR USER TO CLICK (nothing to do with user's topic or something) ]-->
+        <div>
+            {% include 'topics_component.html' %}
+        </div>
+
+        <!-- div for feed (recipes the user has uploaded)-->
+        <div>
+            {% include 'feed_component.html' %}
+        </div>
+    </div>
+{% endblock content %}

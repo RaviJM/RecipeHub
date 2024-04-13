@@ -1,0 +1,18 @@
+<!--for deleting a recipe-->
+
+{% extends 'main.html' %}
+
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <p>Are you sure you want to delete: "{{obj}}"?</p>
+
+    <!--    to sent use back to where they were (send them back to home page or message page)-->
+    <a href="{{request.META.HTTP_REFERER}}">Go Back</a>
+    <input type="submit" value="Confirm">
+
+</form>
+
+
+{% endblock content %}
